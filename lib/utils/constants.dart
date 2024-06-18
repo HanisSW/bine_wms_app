@@ -6,9 +6,12 @@ class PreferenceKey {
 
 class ApiResponseCode {
   static const int SUCCESS = 200;
+  // 아이디 비밀번호 불일치
   static const int NOT_FOUND_USER = 100;
-  static const int NOT_FOUND_SNS_ID = 101;
-  static const int NOT_FOUND_USER_SNS = 102;
+  // 이용 중지 계정
+  static const int NOT_USING_ID = 101;
+  //삭제된 유저
+  static const int DELETE_USER = 102;
   static const int NOT_FOUND_TOKEN = 103;
   static const int DUPLICATE_EMAIL = 104;
   static const int DUPLICATE_PHONE_NO = 105;

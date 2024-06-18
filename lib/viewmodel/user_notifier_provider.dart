@@ -12,7 +12,6 @@ class UserNotifier extends StateNotifier<User?> {
       var response = await ApiClient().login(id, pw);
       if (response.header?.resultCode == 200) {
         User user = User.fromJson(response.body?.data);
-        print(user.userName);
         state = user;
       } else {
         // 로그인 실패 처리

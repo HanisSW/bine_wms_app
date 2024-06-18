@@ -56,9 +56,10 @@ class DefaultLayout extends ConsumerWidget {
         icon: Icon(Icons.logout, color: Colors.black),
         onPressed: () {
           // 로그아웃 처리
-          ref.read(userProvider.notifier).logout();
-          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage()), (Route<dynamic> route) => false);
-          print('로그아웃 버튼 눌림');
+          _showLogoutConfirmationDialog(context, ref);
+          // ref.read(userProvider.notifier).logout();
+          // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage()), (Route<dynamic> route) => false);
+          // print('로그아웃 버튼 눌림');
         },
       ),
       actions: [
@@ -78,6 +79,37 @@ class DefaultLayout extends ConsumerWidget {
       foregroundColor: Colors.black,
     );
   }
+
+  void _showLogoutConfirmationDialog(BuildContext context, WidgetRef ref) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('로그아웃'),
+          content: Text('정말 로그아웃 하시겠습니까?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                // 로그아웃 처리
+                ref.read(userProvider.notifier).logout();
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage()), (Route<dynamic> route) => false);
+                print('로그아웃 버튼 눌림');
+              },
+              child: Text('확인'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('취소'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 }
 
 

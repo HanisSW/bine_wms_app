@@ -1,10 +1,11 @@
 class User {
-  String? userIdx;
+  int? userIdx;
   String? userId;
   String? userName;
   String? userPw;
-  String? userRole;
+  int? userRole;
   String? userRdate;
+  String? userToken;
   String? userUse;
   String? delYN;
 
@@ -15,6 +16,7 @@ class User {
     this.userPw,
     this.userRole,
     this.userRdate,
+    this.userToken,
     this.userUse,
     this.delYN,
   });
@@ -27,6 +29,7 @@ class User {
       userPw: json['user_pw'],
       userRole: json['user_role'],
       userRdate: json['user_rdate'],
+      userToken: json['user_token'],
       userUse: json['user_use'],
       delYN: json['delYN'],
     );
@@ -39,6 +42,7 @@ class User {
     'user_pw': this.userPw ?? '',
     'user_role': this.userRole ?? '',
     'user_rdate': this.userRdate ?? '',
+    'user_token': this.userToken ?? '',
     'user_use': this.userUse ?? '',
     'delYN': this.delYN ?? '',
   };
