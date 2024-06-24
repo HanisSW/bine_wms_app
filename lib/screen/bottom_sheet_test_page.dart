@@ -118,145 +118,41 @@ class InventoryInboundList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        InvenInboundItem(
-          materialName: 'a2',
-          storage: 'ware2',
-          angleName: 'AG1072',
-          updateDate: '2012-02-13',
-          inboundQty: 200,
-          statusText: '이동완료',
-          borderColor: Colors.teal,
-          textColor: Colors.teal,
-        ),
-        InvenInboundItem(
-          angleName: 'AG1072',
-          materialName: 'a2',
-          storage: 'ware2',
-          updateDate: '2012-02-13',
-          inboundQty: 300,
-          statusText: '이동대기',
-          borderColor: Colors.red,
-          textColor: Colors.red,
-        ),
+        // InvenInboundItem(
+        //   warehouseName: ,
+        //   angleName: ,
+        //   borderColor: ,
+        //   itemName: ,
+        //   quantity: ,
+        //   stockId: ,
+        //   textColor: ,
+        //   updateDate: ,
+        // ),
       ],
     );
   }
 }
 
-class InvenInboundItem extends StatelessWidget {
-  final String materialName;
-  final String storage;
+class InvenItem extends StatelessWidget {
+  final int stockId;
+  final String itemName;
+  final String warehouseName;
   final String angleName;
   final String updateDate;
-  final int inboundQty;
-  final String statusText;
+  int quantity;
   final Color borderColor;
   final Color textColor;
 
-  InvenInboundItem({
-    required this.materialName,
-    required this.storage,
+  InvenItem({
+    required this.stockId,
+    required this.itemName,
+    required this.warehouseName,
     required this.angleName,
     required this.updateDate,
-    required this.inboundQty,
-    required this.statusText,
+    required this.quantity,
     required this.borderColor,
     required this.textColor,
   });
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return GestureDetector(
-  //     onTap: () {
-  //       showDialog(
-  //         context: context,
-  //         builder: (BuildContext context) {
-  //           String selectedWarehouse = 'Warehouse A';
-  //           String selectedAngle = 'AG1001';
-  //           TextEditingController quantityController = TextEditingController();
-  //
-  //           return AlertDialog(
-  //             shape: RoundedRectangleBorder(
-  //                 borderRadius: BorderRadius.circular(16)),
-  //             titlePadding: EdgeInsets.all(0),
-  //             title: Row(
-  //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //               children: [
-  //                 Padding(
-  //                   padding: const EdgeInsets.all(16.0),
-  //                   child: Text('앵글로 제품 이동'),
-  //                 ),
-  //                 IconButton(
-  //                   icon: Image.asset('assets/images/deleteIcon.png'),
-  //                   onPressed: () {
-  //                     // 삭제 로직 추가
-  //                     Navigator.of(context).pop();
-  //                   },
-  //                 ),
-  //               ],
-  //             ),
-  //             content: Column(
-  //               mainAxisSize: MainAxisSize.min,
-  //               children: [
-  //                 DropdownButtonFormField<String>(
-  //                   value: selectedWarehouse,
-  //                   decoration: InputDecoration(labelText: '창고 선택'),
-  //                   items: ['Warehouse A', 'Warehouse B', 'Warehouse C']
-  //                       .map((String value) {
-  //                     return DropdownMenuItem<String>(
-  //                       value: value,
-  //                       child: Text(value),
-  //                     );
-  //                   }).toList(),
-  //                   onChanged: (String? newValue) {
-  //                     if (newValue != null) {
-  //                       selectedWarehouse = newValue;
-  //                     }
-  //                   },
-  //                 ),
-  //                 DropdownButtonFormField<String>(
-  //                   value: selectedAngle,
-  //                   decoration: InputDecoration(labelText: '앵글 선택'),
-  //                   items: ['AG1001', 'AG1002', 'AG1003'].map((String value) {
-  //                     return DropdownMenuItem<String>(
-  //                       value: value,
-  //                       child: Text(value),
-  //                     );
-  //                   }).toList(),
-  //                   onChanged: (String? newValue) {
-  //                     if (newValue != null) {
-  //                       selectedAngle = newValue;
-  //                     }
-  //                   },
-  //                 ),
-  //                 TextField(
-  //                   controller: quantityController,
-  //                   decoration: InputDecoration(
-  //                     labelText: '수량',
-  //                   ),
-  //                   keyboardType: TextInputType.number,
-  //                 ),
-  //               ],
-  //             ),
-  //             actions: [
-  //               TextButton(
-  //                 onPressed: () {
-  //                   Navigator.of(context).pop(); // 팝업창 닫기
-  //                 },
-  //                 child: Text('취소'),
-  //               ),
-  //               TextButton(
-  //                 onPressed: () {
-  //                   // 입고 등록 로직 추가
-  //                   Navigator.of(context).pop(); // 팝업창 닫기
-  //                 },
-  //                 child: Text('앵글로 이동완료'),
-  //               ),
-  //             ],
-  //           );
-  //         },
-  //       );
-  //     },
 
   @override
   Widget build(BuildContext context) {
@@ -378,19 +274,20 @@ class InvenInboundItem extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('제품명: ' + materialName,
+                  Text('No : $stockId',
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   SizedBox(height: 4.0),
-                  Text('창고: $storage'),
+                  Text('제품: $itemName'),
+                  Text('창고: $warehouseName'),
                   Text('앵글: $angleName'),
-                  Text('업데이트날짜: $updateDate'),
                 ],
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text('수량 : $inboundQty'),
+                  Text('업데이트날짜: $updateDate'),
+                  Text('수량 : $quantity'),
                 ],
               ),
             ],

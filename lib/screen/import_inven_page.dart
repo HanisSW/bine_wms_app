@@ -7,6 +7,7 @@ import 'package:wms_project/common/layouts/default_layout.dart';
 import 'package:wms_project/utils/api_client.dart';
 import 'package:wms_project/viewmodel/import_date_notifier_provider.dart';
 import 'package:wms_project/viewmodel/import_inven_notifier_provider.dart';
+import 'package:wms_project/viewmodel/test_bluetooth_notifier.dart';
 import 'package:wms_project/viewmodel/user_notifier_provider.dart';
 
 class ImportInvenPage extends ConsumerStatefulWidget {
@@ -334,7 +335,8 @@ class _ImportInvenPageState extends ConsumerState<ImportInvenPage> {
   @override
   Widget build(BuildContext context) {
     final importInvenData = ref.watch(importInvenProvider);
-    String? token = ref.read(userProvider.notifier).state!.userToken;
+    final sppState = ref.watch(sppProvider);
+    //String? token = ref.read(userProvider.notifier).state!.userToken;
 
     inboundItems = importInvenData
         .map((data) => InboundItemData(

@@ -4,10 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:wms_project/common/constants/colors.dart';
 import 'package:wms_project/common/layouts/default_layout.dart';
+import 'package:wms_project/screen/blue_tooth_test.dart';
 import 'package:wms_project/screen/inven_move_page.dart';
 import 'package:wms_project/screen/prepare_export_page.dart';
 import 'package:wms_project/screen/prepare_import_page.dart';
-import 'package:wms_project/screen/test_page.dart';
+import 'package:wms_project/screen/bottom_sheet_test_page.dart';
 
 class MainPage extends ConsumerStatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -91,7 +92,7 @@ class _MainPageState extends ConsumerState<MainPage> {
                       '재고 이동',
                       Icons.storage,
                       Colors.green,
-                          () => TestPage(),
+                          () => InvenMovePage(),
                     ),
                     _buildMenuButton(
                       context,
@@ -99,7 +100,7 @@ class _MainPageState extends ConsumerState<MainPage> {
                       '블루투스 설정',
                       Icons.bluetooth,
                       Colors.orange,
-                          () => TestPage(),
+                          () => BluetoothPage(),
                     ),
                   ],
                 ),

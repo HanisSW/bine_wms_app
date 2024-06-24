@@ -1,6 +1,7 @@
 class OutboundInstruction {
   int? outboundId;
   String? itemName;
+  int? itemCode;
   String? warehouseName;
   String? angleName;
   String? companyName;
@@ -20,6 +21,7 @@ class OutboundInstruction {
   OutboundInstruction({
     this.outboundId,
     this.itemName,
+    this.itemCode,
     this.warehouseName,
     this.angleName,
     this.companyName,
@@ -37,6 +39,7 @@ class OutboundInstruction {
     return OutboundInstruction(
       outboundId: json['outbound_id'],
       itemName: json['item_name'],
+      itemCode: json['item_code'],
       warehouseName: json['warehouse_name'],
       angleName: json['angle_name'],
       companyName: json['company_name'],
@@ -53,6 +56,7 @@ class OutboundInstruction {
   Map<String, dynamic> toJson() => {
     'outbound_id': this.outboundId,
     'item_name': this.itemName ?? '',
+    'item_code': this.itemCode ?? '',
     'warehouse_name': this.warehouseName ?? '',
     'angle_name': this.angleName ?? '',
     'company_name': this.companyName ?? '',
@@ -93,6 +97,7 @@ class OutboundInstruction {
   OutboundInstruction copyWith({
     int? outboundId,
     String? itemName,
+    int? itemCode,
     String? warehouseName,
     String? angleName,
     String? companyName,
@@ -107,6 +112,7 @@ class OutboundInstruction {
     return OutboundInstruction(
       outboundId: outboundId ?? this.outboundId,
       itemName: itemName ?? this.itemName,
+      itemCode: itemCode ?? this.itemCode,
       warehouseName: warehouseName ?? this.warehouseName,
       angleName: angleName ?? this.angleName,
       companyName: companyName ?? this.companyName,

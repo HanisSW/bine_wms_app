@@ -40,6 +40,8 @@ class ApiClient {
   final String _exportInvenOrderDateCall = '9';
   final String _sendMultipleOutboundData = '16';
   final String _getInventoryList = '7';
+  final String _getWarehouseAngle = '17';
+  final String _sendInvenMoveData = '8';
   /**
    * Login Api
    */
@@ -283,6 +285,65 @@ class ApiClient {
       throw Exception('fail');
     }
   }
+
+
+  Future<ApiResponse> getWarehouseAngle() async {
+    final response = await http.get(Uri.http(_baseUrl, '$_basePath',{'API_NUM': _getWarehouseAngle,}), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': token,
+    }).timeout(Duration(seconds: 10));
+
+    print(response.request);
+    print(response.statusCode);
+    print(response.headers);
+    print(response.body);
+    if (response.statusCode == 200) {
+      print(response.statusCode);
+      print('--------------');
+      print(response.body);
+      print('--------------');
+      print(utf8.decode(response.bodyBytes));
+      print('--------------');
+      print(json.decode(utf8.decode(response.bodyBytes)));
+      return ApiResponse.fromJson(json.decode(utf8.decode(response.bodyBytes)));
+    }else {
+      throw Exception('fail');
+    }
+  }
+
+
+  Future<bool> sendInvenMoveData(String stockId, String toWareId, String toAngleId, String toCnt) async {
+    final response = await http.post(Uri.http(_baseUrl, '$_basePath',{'API_NUM': _sendInvenMoveData}),
+      headers: {
+        'Content-Type': 'application/json',
+        'accept': 'application/json',
+      },
+      body: jsonEncode({
+        "API_NUM": _sendInvenMoveData,
+        "stock_id": stockId,
+        "to_ware_id": toWareId,
+        "to_angle_id": toAngleId,
+        "to_cnt": toCnt
+      }),
+    ).timeout(Duration(seconds: 10));
+
+    print('확인부터');
+    print(stockId);
+    print(toWareId);
+    print(toAngleId);
+    print(toCnt);
+
+    if (response.statusCode == 200) {
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      return true;
+    } else {
+      print('Failed to send data. Status code: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      return false;
+    }
+  }
+
 
 
 
